@@ -14,27 +14,46 @@ def get_titles():
     if counter < 1 :
       counter += 1
       print(i.getText(), end="")
+      print(i)
     else:
       counter = 0
       print(i.getText())
   # print(soup.select_one(selector="span a"))
 
-
-
-
-def get_article_link():
+def get_article_upvote():
   
- soup.a.parent.name
+  post_titles = soup.find_all(name="span", class_="score")
+  counter = 0
+  for i in post_titles:
+    print(i.getText())
+    
   # print(soup.select_one(selector="span"))
 
-get_titles()
+def get_href():
+  
+  # post_titles = soup.find_all(name="a")
+  # counter = 0
+  # for i in post_titles:  
+  #   print(i)
+  span = soup.select('span', class_="titleline")
+  children = soup.find_all(True)
+  print(children)
 
 
+def get_titles_href():
+  
+  post_titles = soup.find_all(name="span", class_="titleline")
+  counter = 0
+  for i in post_titles:
+    if counter < 1 :
+      counter += 1
+      print(i, end="")
+  
+    else:
+      counter = 0
+      print(i.getText())
 
-def custom_selector(tag):
-	# Return "span" tags with a class name of "target_span"
-	return tag.name == "span" and tag.has_attr("class") and "target_span" in tag.get("class")
-
+get_titles_href()
 
 # for i in post_titles:
 #   print(f' record {i}')
