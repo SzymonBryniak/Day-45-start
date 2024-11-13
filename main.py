@@ -6,54 +6,48 @@ yc_web_page = response.text
 soup = BeautifulSoup(yc_web_page, "html.parser")
 
 
-def get_titles():
-  
+def get_titles_numbered():
   post_titles = soup.find_all(name="td", class_="title")
   counter = 0
   for i in post_titles:
     if counter < 1 :
       counter += 1
       print(i.getText(), end="")
-      print(i)
     else:
       counter = 0
       print(i.getText())
   # print(soup.select_one(selector="span a"))
 
-def get_article_upvote():
-  
-  post_titles = soup.find_all(name="span", class_="score")
+
+def get_titles():
+  post_titles = soup.find_all(class_="titleline")
   counter = 0
+  for i in post_titles:
+    print(i.getText())
+
+
+def get_article_upvote():
+  post_titles = soup.find_all(name="span", class_="score")
   for i in post_titles:
     print(i.getText())
     
   # print(soup.select_one(selector="span"))
 
+
 def get_href():
-  
-  # post_titles = soup.find_all(name="a")
-  # counter = 0
-  # for i in post_titles:  
-  #   print(i)
-  span = soup.select('span', class_="titleline")
-  children = soup.find_all(True)
-  print(children)
-
-
-def get_titles_href():
-  
-  post_titles = soup.find_all(name="span", class_="titleline")
-  counter = 0
+  post_titles = soup.find_all(class_="titleline")
   for i in post_titles:
-    if counter < 1 :
-      counter += 1
-      print(i, end="")
-  
-    else:
-      counter = 0
-      print(i.getText())
+    print(i.find('a').get('href'))
 
-get_titles_href()
+
+# link = soup.select('span').find('a')
+# print(link)
+
+
+
+
+
+
 
 # for i in post_titles:
 #   print(f' record {i}')
